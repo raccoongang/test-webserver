@@ -3,6 +3,9 @@ import SimpleHTTPServer
 import SocketServer
 import os
 
+DIR_NAME = os.path.dirname(os.path.abspath(__file__))
+PATH_FILE = os.join(DIR_NAME, "index.html")
+
 
 PORT = 80
 
@@ -15,7 +18,7 @@ class Handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
                or p.endswith('.ttf')
                or p.endswith('.woff')
                or p.endswith('.woff2')):
-            _FD = open('/var/www/index.html', 'r')
+            _FD = open(PATH_FILE, 'r')
             self.send_response(200)
             self.send_header("Content-type", "text/html")
             self.wfile.write('\n')
